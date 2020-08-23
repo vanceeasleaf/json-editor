@@ -1,6 +1,6 @@
-const webpack = require('webpack')
-const helpers = require('./helpers')
-const CssToJSON = require('../build/CssToJson')
+const webpack = require("webpack");
+const helpers = require("./helpers");
+const CssToJSON = require("../build/CssToJson");
 
 const bannerText = `/**
 * @name JSON Editor
@@ -12,57 +12,55 @@ const bannerText = `/**
 * @see https://github.com/json-editor/json-editor
 * @license MIT
 * @example see README.md and docs/ for requirements, examples and usage info
-*/`
+*/`;
 module.exports = {
   entry: {
-    jsoneditor: './src/core.js'
+    jsoneditor: ["babel-polyfill", "./src/core.js"],
   },
   resolve: {
-    extensions: ['.js']
+    extensions: [".js"],
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader'
+      // },
       {
         test: /\.js|\.css.js$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                '@babel/preset-env'
-              ]
-            }
-          }
-        ]
+            loader: "babel-loader",
+            // options: {
+            //   presets: ["@babel/preset-env"],
+            // },
+          },
+        ],
       },
       {
         test: /\.css$/,
         exclude: /(node_modules)|(src\/themes)|(src\/editors)/,
-        use: ['style-loader', 'css-loader']
-      }
-    ]
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   plugins: [
     new webpack.BannerPlugin(
       bannerText.replace(
-        '{{ VERSION }}',
-        JSON.stringify(require('../package.json').version)
+        "{{ VERSION }}",
+        JSON.stringify(require("../package.json").version)
       )
     ),
     new CssToJSON({
-      pattern: './src/**/*.css'
-    })
+      pattern: "./src/**/*.css",
+    }),
   ],
   devServer: {
-    contentBase: helpers.root('.'),
+    contentBase: helpers.root("."),
     historyApiFallback: true,
-    port: 8080
-  }
-}
+    port: 8080,
+  },
+};

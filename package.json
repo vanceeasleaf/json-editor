@@ -1,5 +1,5 @@
 {
-  "name": "@json-editor/json-editor",
+  "name": "@json-editor-zy/json-editor",
   "title": "JSONEditor",
   "description": "JSON Schema based editor",
   "version": "2.3.0",
@@ -44,9 +44,7 @@
     "cp:test": "codeceptjs run --steps --invert --grep  @optional",
     "cp:testmocha": "codeceptjs run --steps --reporter mochawesome --invert --grep  @optional",
     "cp:fulltest": "codeceptjs run --steps",
-    "cp:fulltestmocha": "codeceptjs run --steps --reporter mochawesome",
-    "eslint.fix": "eslint -c ./.eslintrc src/**/*.js --fix",
-    "eslint": "eslint -c ./.eslintrc src/**/*.js"
+    "cp:fulltestmocha": "codeceptjs run --steps --reporter mochawesome"
   },
   "license": "MIT",
   "engines": {
@@ -63,8 +61,6 @@
     "css-loader": "^3.5.3",
     "css2json": "^1.1.1",
     "cssnano": "^4.1.10",
-    "eslint": "^6.8.0",
-    "eslint-loader": "^2.2.1",
     "http-server": "^0.12.3",
     "jasmine": "^3.5.0",
     "jasmine-core": "^3.5.0",
@@ -92,5 +88,8 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@vue/babel-preset-app": "3.12.1",
+    "babel-polyfill": "6.26.0"
+  }
 }
